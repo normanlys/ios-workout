@@ -10,7 +10,7 @@
 		0B2C7417941F66F3B0FC0297 /* Pods_WorkoutTrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6B2721E95099DF304C1B31 /* Pods_WorkoutTrackerUITests.framework */; };
 		1A9F4AF4227DE64E0029AC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF3227DE64E0029AC3A /* AppDelegate.swift */; };
 		1A9F4AF6227DE64E0029AC3A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */; };
-		1A9F4AF8227DE64E0029AC3A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF7227DE64E0029AC3A /* SecondViewController.swift */; };
+		1A9F4AF8227DE64E0029AC3A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF7227DE64E0029AC3A /* SettingsViewController.swift */; };
 		1A9F4AFB227DE64E0029AC3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF9227DE64E0029AC3A /* Main.storyboard */; };
 		1A9F4AFD227DE6500029AC3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A9F4AFC227DE6500029AC3A /* Assets.xcassets */; };
 		1A9F4B00227DE6500029AC3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9F4AFE227DE6500029AC3A /* LaunchScreen.storyboard */; };
@@ -44,7 +44,7 @@
 		1A9F4AF0227DE64E0029AC3A /* WorkoutTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9F4AF3227DE64E0029AC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		1A9F4AF7227DE64E0029AC3A /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		1A9F4AF7227DE64E0029AC3A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1A9F4AFA227DE64E0029AC3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A9F4AFC227DE6500029AC3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9F4AFF227DE6500029AC3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */,
-				1A9F4AF7227DE64E0029AC3A /* SecondViewController.swift */,
+				1A9F4AF7227DE64E0029AC3A /* SettingsViewController.swift */,
 				1A9F4AF9227DE64E0029AC3A /* Main.storyboard */,
 			);
 			path = Views;
@@ -182,7 +182,6 @@
 				56653EA78E1D7099600DEA10 /* Pods-WorkoutTrackerUITests.debug.xcconfig */,
 				6969D556D14B86B0F46D1D44 /* Pods-WorkoutTrackerUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -424,7 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A9F4AF8227DE64E0029AC3A /* SecondViewController.swift in Sources */,
+				1A9F4AF8227DE64E0029AC3A /* SettingsViewController.swift in Sources */,
 				1A9F4AF4227DE64E0029AC3A /* AppDelegate.swift in Sources */,
 				1A9F4B27227F01800029AC3A /* MuscleGroup.swift in Sources */,
 				1A9F4AF6227DE64E0029AC3A /* HomeViewController.swift in Sources */,
