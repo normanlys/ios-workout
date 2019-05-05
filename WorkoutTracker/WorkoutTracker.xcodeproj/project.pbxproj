@@ -15,6 +15,7 @@
 		1A9F4B00227DE6500029AC3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9F4AFE227DE6500029AC3A /* LaunchScreen.storyboard */; };
 		1A9F4B0B227DE6500029AC3A /* WorkoutTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4B0A227DE6500029AC3A /* WorkoutTrackerTests.swift */; };
 		1A9F4B16227DE6500029AC3A /* WorkoutTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4B15227DE6500029AC3A /* WorkoutTrackerUITests.swift */; };
+		1A9F4B27227F01800029AC3A /* MuscleGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4B26227F01800029AC3A /* MuscleGroup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		1A9F4B11227DE6500029AC3A /* WorkoutTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9F4B15227DE6500029AC3A /* WorkoutTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTrackerUITests.swift; sourceTree = "<group>"; };
 		1A9F4B17227DE6500029AC3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A9F4B26227F01800029AC3A /* MuscleGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		1A9F4AF2227DE64E0029AC3A /* WorkoutTracker */ = {
 			isa = PBXGroup;
 			children = (
+				1A9F4B25227F01750029AC3A /* Models */,
 				1A9F4AF3227DE64E0029AC3A /* AppDelegate.swift */,
 				1A9F4B24227DE6730029AC3A /* SupportFiles */,
 				1A9F4B23227DE6680029AC3A /* Views */,
@@ -142,6 +145,14 @@
 				1A9F4AFE227DE6500029AC3A /* LaunchScreen.storyboard */,
 			);
 			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		1A9F4B25227F01750029AC3A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A9F4B26227F01800029AC3A /* MuscleGroup.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +288,7 @@
 			files = (
 				1A9F4AF8227DE64E0029AC3A /* SecondViewController.swift in Sources */,
 				1A9F4AF4227DE64E0029AC3A /* AppDelegate.swift in Sources */,
+				1A9F4B27227F01800029AC3A /* MuscleGroup.swift in Sources */,
 				1A9F4AF6227DE64E0029AC3A /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,7 +466,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MLXY323LE7;
-				INFOPLIST_FILE = WorkoutTracker/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WorkoutTracker/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,7 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MLXY323LE7;
-				INFOPLIST_FILE = WorkoutTracker/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WorkoutTracker/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
