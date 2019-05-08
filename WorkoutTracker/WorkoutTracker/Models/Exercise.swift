@@ -18,6 +18,12 @@ class Exercise: Object, Codable {
         set { muscleGroupString = newValue.rawValue }
     }
     
+    convenience init(name: String, muscleGroup: MuscleGroup) {
+        self.init()
+        self.name = name
+        self.muscleGroup = muscleGroup
+    }
+    
     override static func primaryKey() -> String? {
         return "name"
     }

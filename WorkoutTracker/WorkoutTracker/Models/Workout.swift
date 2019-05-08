@@ -11,8 +11,9 @@ import RealmSwift
 
 class Workout: Object {
     @objc dynamic var date = Date()
-    @objc dynamic var duration: Int = 0
+    @objc dynamic var duration: Double = 0
     @objc dynamic var entriesJSONString = ""
+    @objc dynamic var id = Int(Date().timeIntervalSince1970)
     
     var entries: [Entry] {
         get {
@@ -36,8 +37,15 @@ class Workout: Object {
         }
     }
     
+    convenience init(date: Date, duration: TimeInterval, entries: [Workout.Entry]) {
+        self.init()
+        self.date = date
+        self.duration = duration
+        self.entries = entries
+    }
+    
     override static func primaryKey() -> String? {
-        return "date"
+        return "id"
     }
     
     struct Entry: Codable {
