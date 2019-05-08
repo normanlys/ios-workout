@@ -17,6 +17,9 @@
 		1A9F4B0B227DE6500029AC3A /* WorkoutTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4B0A227DE6500029AC3A /* WorkoutTrackerTests.swift */; };
 		1A9F4B16227DE6500029AC3A /* WorkoutTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4B15227DE6500029AC3A /* WorkoutTrackerUITests.swift */; };
 		1A9F4B27227F01800029AC3A /* MuscleGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4B26227F01800029AC3A /* MuscleGroup.swift */; };
+		1A9F4B292282F7150029AC3A /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4B282282F7140029AC3A /* WorkoutViewController.swift */; };
+		1A9F4B2D2282F8910029AC3A /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4B2C2282F8910029AC3A /* Workout.swift */; };
+		1A9F4B2F2282F91F0029AC3A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4B2E2282F91F0029AC3A /* Exercise.swift */; };
 		3DAD344FEDFDCBE64D85F39E /* Pods_WorkoutTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892BA70EB06AD9153C716ACC /* Pods_WorkoutTracker.framework */; };
 		6C95CC0FD6C48C8D4D51D4B5 /* Pods_WorkoutTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D39540EB1B80E319566EE04 /* Pods_WorkoutTrackerTests.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +59,9 @@
 		1A9F4B15227DE6500029AC3A /* WorkoutTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTrackerUITests.swift; sourceTree = "<group>"; };
 		1A9F4B17227DE6500029AC3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A9F4B26227F01800029AC3A /* MuscleGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroup.swift; sourceTree = "<group>"; };
+		1A9F4B282282F7140029AC3A /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		1A9F4B2C2282F8910029AC3A /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		1A9F4B2E2282F91F0029AC3A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		1B776DCC1AA412DF569AFAA9 /* Pods-WorkoutTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutTrackerTests.debug.xcconfig"; path = "Target Support Files/Pods-WorkoutTrackerTests/Pods-WorkoutTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		56653EA78E1D7099600DEA10 /* Pods-WorkoutTrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutTrackerUITests.debug.xcconfig"; path = "Target Support Files/Pods-WorkoutTrackerUITests/Pods-WorkoutTrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D39540EB1B80E319566EE04 /* Pods_WorkoutTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +156,7 @@
 				1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */,
 				1A9F4AF7227DE64E0029AC3A /* SettingsViewController.swift */,
 				1A9F4AF9227DE64E0029AC3A /* Main.storyboard */,
+				1A9F4B282282F7140029AC3A /* WorkoutViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				1A9F4B26227F01800029AC3A /* MuscleGroup.swift */,
+				1A9F4B2C2282F8910029AC3A /* Workout.swift */,
+				1A9F4B2E2282F91F0029AC3A /* Exercise.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -427,6 +436,9 @@
 				1A9F4AF4227DE64E0029AC3A /* AppDelegate.swift in Sources */,
 				1A9F4B27227F01800029AC3A /* MuscleGroup.swift in Sources */,
 				1A9F4AF6227DE64E0029AC3A /* HomeViewController.swift in Sources */,
+				1A9F4B292282F7150029AC3A /* WorkoutViewController.swift in Sources */,
+				1A9F4B2F2282F91F0029AC3A /* Exercise.swift in Sources */,
+				1A9F4B2D2282F8910029AC3A /* Workout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
