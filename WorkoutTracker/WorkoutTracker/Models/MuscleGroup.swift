@@ -19,8 +19,7 @@ enum MuscleGroup: String {
 //    case forearms
     
     // legs
-    case quadriceps
-    case hamstrings
+    case legs
     case calves
     
     // back
