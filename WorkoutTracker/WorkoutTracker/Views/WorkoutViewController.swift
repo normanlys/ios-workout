@@ -9,9 +9,11 @@
 import UIKit
 
 class WorkoutViewController: UIViewController {
+    
+    var workout = Workout(duration: 0, entries: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = DateFormatter.standard.string(from: workout.date)
     }
 }

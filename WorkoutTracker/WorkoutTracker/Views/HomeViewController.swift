@@ -7,31 +7,26 @@
 //
 
 import UIKit
+import RealmSwift
 
 class HomeViewController: UIViewController {
     
-    var datasource: [TableItem] = []
-    var dateFormatter = { () -> DateFormatter in
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMM yyyy"
-        formatter.timeZone = TimeZone.current
-        formatter.locale = Locale.current
-        formatter.calendar = Calendar.current
-        return formatter
+    var workouts = { () -> Results<Workout> in
+        let realm = try! Realm()
+        return realm.objects(Workout.self)
     }()
-    var intervalFormatter = { () -> DateComponentsFormatter in
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .abbreviated
-        formatter.allowedUnits = [.hour, .minute]
-        return formatter
-    }()
+    var selectedWorkout: Workout?
+    
+    var datasource: [TableItem] {
+        return workouts.map { workout in
+            return TableItem(muscleGroups: workout.entries.map { $0.exercise.muscleGroup },
+                             date: workout.date,
+                             duration: workout.duration)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        datasource = [
-            TableItem(muscleGroups: [.chest], date: Date(), duration: TimeInterval(exactly: 1000)!),
-            TableItem(muscleGroups: [.legs], date: Date(), duration: TimeInterval(exactly: 19000)!),
-        ]
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -39,7 +34,8 @@ class HomeViewController: UIViewController {
         case "addWorkoutSegue":
             break
         case "viewWorkoutSegue":
-            break
+            let vc = segue.destination as! WorkoutViewController
+            vc.workout = selectedWorkout!
         default:
             break
         }
@@ -56,13 +52,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let item = datasource[indexPath.row]
         
         cell.textLabel?.text = item.muscleGroups.map { $0.rawValue.capitalized }.joined(separator: ", ")
-        cell.detailTextLabel?.text = [dateFormatter.string(from: item.date), intervalFormatter.string(from: item.duration)!].joined(separator: ", ")
+        cell.detailTextLabel?.text = [DateFormatter.standard.string(from: item.date),
+                                      DateComponentsFormatter.standard.string(from: item.duration)!].joined(separator: ", ")
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedWorkout = workouts[indexPath.row]
+        return indexPath
     }
 }
 

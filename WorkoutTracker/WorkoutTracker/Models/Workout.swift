@@ -37,9 +37,8 @@ class Workout: Object {
         }
     }
     
-    convenience init(date: Date, duration: TimeInterval, entries: [Workout.Entry]) {
+    convenience init(duration: TimeInterval, entries: [Workout.Entry]) {
         self.init()
-        self.date = date
         self.duration = duration
         self.entries = entries
     }
