@@ -16,4 +16,8 @@ class WorkoutViewController: UIViewController {
         super.viewDidLoad()
         title = DateFormatter.standard.string(from: workout.date)
     }
+    
+    deinit {
+        DatabaseManager.add(object: workout)
+    }
 }
