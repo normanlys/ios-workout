@@ -19,9 +19,11 @@ class HomeViewController: UIViewController {
         return realm.objects(Workout.self)
     }
     var datasource: [TableItem] {
-        return workouts.map { workout in
+        return workouts
+            .sorted { $1.fromDate < $0.fromDate}
+            .map { workout in
             return TableItem(muscleGroups: workout.entries.map { $0.exercise.muscleGroup },
-                             date: workout.date,
+                             date: workout.fromDate,
                              duration: workout.duration)
         }
     }
@@ -43,6 +45,7 @@ class HomeViewController: UIViewController {
         case "viewWorkoutSegue":
             let vc = segue.destination as! WorkoutViewController
             vc.workout = selectedWorkout!
+            vc.isReadOnly = true
         default:
             break
         }

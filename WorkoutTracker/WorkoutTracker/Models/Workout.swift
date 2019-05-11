@@ -10,11 +10,14 @@ import Foundation
 import RealmSwift
 
 class Workout: Object {
-    @objc dynamic var date = Date()
-    @objc dynamic var duration: Double = 0
+    @objc dynamic var fromDate = Date()
+    @objc dynamic var toDate = Date()
     @objc dynamic var entriesJSONString = ""
     @objc dynamic var id = Int(Date().timeIntervalSince1970)
     
+    var duration: TimeInterval {
+        return toDate.timeIntervalSince(fromDate)
+    }
     var entries: [Entry] {
         get {
             let decoder = JSONDecoder()
@@ -37,9 +40,8 @@ class Workout: Object {
         }
     }
     
-    convenience init(duration: TimeInterval, entries: [Workout.Entry]) {
+    convenience init(entries: [Workout.Entry]) {
         self.init()
-        self.duration = duration
         self.entries = entries
     }
     

@@ -10,14 +10,21 @@ import UIKit
 
 class WorkoutViewController: UIViewController {
     
-    var workout = Workout(duration: 0, entries: [])
+    var workout = Workout(entries: [])
+    var isReadOnly = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = DateFormatter.standard.string(from: workout.date)
+        title = DateFormatter.standard.string(from: workout.fromDate)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !isReadOnly { workout.toDate = Date() }
+        DatabaseManager.add(object: workout)
+        
     }
     
     deinit {
-        DatabaseManager.add(object: workout)
     }
 }
