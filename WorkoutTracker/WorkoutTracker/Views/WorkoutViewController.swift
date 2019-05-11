@@ -12,6 +12,10 @@ class WorkoutViewController: UIViewController {
     
     var workout = Workout(entries: [])
     var isReadOnly = false
+    
+    var datasource: [Workout.Entry] {
+        return workout.entries
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +24,27 @@ class WorkoutViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if !isReadOnly { workout.toDate = Date() }
+        if !isReadOnly {
+            DatabaseManager.write { (realm) in
+                workout.toDate = Date()
+            }
+        }
         DatabaseManager.add(object: workout)
     }
+}
+
+extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return datasource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "entryTableCell")!
+        let entry = datasource[indexPath.row]
+        cell.textLabel?.text = entry.exercise.muscleGroup.rawValue.capitalized
+        cell.detailTextLabel?.text = "\(entry.sets.count) sets"
+        return cell
+    }
+    
+    
 }
