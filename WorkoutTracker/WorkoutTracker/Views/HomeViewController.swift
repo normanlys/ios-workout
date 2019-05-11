@@ -11,12 +11,13 @@ import RealmSwift
 
 class HomeViewController: UIViewController {
     
-    var workouts = { () -> Results<Workout> in
-        let realm = try! Realm()
-        return realm.objects(Workout.self)
-    }()
+    /// Referencing database object
     var selectedWorkout: Workout?
     
+    var workouts: Results<Workout> {
+        let realm = try! Realm()
+        return realm.objects(Workout.self)
+    }
     var datasource: [TableItem] {
         return workouts.map { workout in
             return TableItem(muscleGroups: workout.entries.map { $0.exercise.muscleGroup },
@@ -24,9 +25,15 @@ class HomeViewController: UIViewController {
                              duration: workout.duration)
         }
     }
-
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
