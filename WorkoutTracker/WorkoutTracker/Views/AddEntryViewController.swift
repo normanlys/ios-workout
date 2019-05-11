@@ -52,7 +52,7 @@ class AddEntryViewController: UIViewController {
     
     @IBAction func addPressed(_ sender: Any) {
         guard let exercise = selectedExercise else {
-            presentSimpleAlert(title: "Choose an Exercise First")
+            presentSimpleAlert(title: "Choose an Exercise")
             return
         }
         delegate?.didSelectExercise(exercise)
@@ -80,6 +80,7 @@ extension AddEntryViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension AddEntryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        // FIXME:
         return
     }
 }
