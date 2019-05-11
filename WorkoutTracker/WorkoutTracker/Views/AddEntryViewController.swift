@@ -9,15 +9,26 @@
 import UIKit
 import RealmSwift
 
+protocol AddEntryDelegate {
+    func didSelectExercise(_ exercise: Exercise)
+}
+
 class AddEntryViewController: UIViewController {
     
+    var delegate: AddEntryDelegate?
+    var selectedExercise: Exercise?
+    
     var exercises: [Exercise] {
-        let realm = try! Realm()
-        return realm.objects(Exercise.self).sorted { $0.name < $1.name}
+//        let realm = try! Realm()
+//        return realm.objects(Exercise.self).sorted { $0.name < $1.name}
+        return [Exercise(name: "Test", muscleGroup: .abdominal)]
     }
-
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
         configureSearchController()
     }
     
@@ -38,6 +49,14 @@ class AddEntryViewController: UIViewController {
     @IBAction func closePressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func addPressed(_ sender: Any) {
+        guard let exercise = selectedExercise else {
+            presentSimpleAlert(title: "Choose an Exercise First")
+            return
+        }
+        delegate?.didSelectExercise(exercise)
+    }
 }
 
 extension AddEntryViewController: UITableViewDelegate, UITableViewDataSource {
@@ -51,6 +70,10 @@ extension AddEntryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = exercise.name
         cell.detailTextLabel?.text = exercise.muscleGroup.rawValue.capitalized
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedExercise = exercises[indexPath.row]
     }
 }
 

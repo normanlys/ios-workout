@@ -135,7 +135,7 @@
                     <navigationItem key="navigationItem" title="Date" id="0qa-G9-v3L">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wup-9e-Cf7">
                             <connections>
-                                <segue destination="D8j-od-8aD" kind="presentation" id="954-34-6SE"/>
+                                <segue destination="D8j-od-8aD" kind="presentation" identifier="addEntrySegue" id="954-34-6SE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -186,11 +186,32 @@
                                     <outlet property="delegate" destination="clU-Up-nVq" id="Mxz-Y2-ZTR"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sou-ac-JuN">
+                                <rect key="frame" x="20" y="814" width="374" height="40"/>
+                                <color key="backgroundColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ZXP-fB-GeV"/>
+                                </constraints>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addPressed:" destination="clU-Up-nVq" eventType="touchUpInside" id="pdc-cB-Ihn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="cAh-1V-LJA" firstAttribute="bottom" secondItem="sou-ac-JuN" secondAttribute="bottom" constant="8" id="D2E-ib-3Wg"/>
+                            <constraint firstItem="sou-ac-JuN" firstAttribute="centerX" secondItem="7Pm-qY-3yY" secondAttribute="centerX" id="DxK-iv-M1v"/>
                             <constraint firstItem="cAh-1V-LJA" firstAttribute="bottom" secondItem="z6S-XA-YwP" secondAttribute="bottom" id="IfP-Rw-sxR"/>
                             <constraint firstItem="z6S-XA-YwP" firstAttribute="top" secondItem="cAh-1V-LJA" secondAttribute="top" id="ddx-6F-LH1"/>
+                            <constraint firstItem="sou-ac-JuN" firstAttribute="leading" secondItem="cAh-1V-LJA" secondAttribute="leading" constant="20" id="gWB-jA-l2I"/>
                             <constraint firstItem="z6S-XA-YwP" firstAttribute="leading" secondItem="cAh-1V-LJA" secondAttribute="leading" id="u9r-7D-hmy"/>
                             <constraint firstItem="cAh-1V-LJA" firstAttribute="trailing" secondItem="z6S-XA-YwP" secondAttribute="trailing" id="uOv-fp-01T"/>
                         </constraints>
@@ -203,6 +224,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="z6S-XA-YwP" id="NXg-at-Mvg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pir-eY-a5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -31,6 +31,16 @@ class WorkoutViewController: UIViewController {
         }
         DatabaseManager.add(object: workout)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "addEntrySegue":
+            let vc = (segue.destination as! UINavigationController).topViewController as! AddEntryViewController
+            vc.delegate = self
+        default:
+            break
+        }
+    }
 }
 
 extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource {
@@ -45,6 +55,10 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource {
         cell.detailTextLabel?.text = "\(entry.sets.count) sets"
         return cell
     }
-    
-    
+}
+
+extension WorkoutViewController: AddEntryDelegate {
+    func didSelectExercise(_ exercise: Exercise) {
+        // FIXME: edit entry
+    }
 }
