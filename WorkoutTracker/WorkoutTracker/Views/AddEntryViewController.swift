@@ -56,6 +56,7 @@ class AddEntryViewController: UIViewController {
             return
         }
         delegate?.didSelectExercise(exercise)
+        dismiss(animated: true, completion: nil)
     }
 }
 
