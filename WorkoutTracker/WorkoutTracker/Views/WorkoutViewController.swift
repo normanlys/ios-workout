@@ -22,9 +22,5 @@ class WorkoutViewController: UIViewController {
         super.viewWillAppear(animated)
         if !isReadOnly { workout.toDate = Date() }
         DatabaseManager.add(object: workout)
-        
-    }
-    
-    deinit {
     }
 }
