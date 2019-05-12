@@ -15,29 +15,35 @@ protocol AddEntryDelegate {
 
 class AddEntryViewController: UIViewController {
     
+    let exercises: [Exercise] = {
+        //        let realm = try! Realm()
+        //        return realm.objects(Exercise.self).sorted { $0.name < $1.name}
+        return [Exercise(name: "Test", muscleGroup: .abdominal)]
+    }()
+    
     var delegate: AddEntryDelegate?
     var selectedExercise: Exercise?
-    
-    var exercises: [Exercise] {
-//        let realm = try! Realm()
-//        return realm.objects(Exercise.self).sorted { $0.name < $1.name}
-        return [Exercise(name: "Test", muscleGroup: .abdominal)]
-    }
+    var datasource: [Exercise] = []
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
         configureSearchController()
     }
     
-    func configureSearchController() {
+    private func configureTableView() {
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
+        datasource = exercises
+        tableView.reloadData()
+    }
+    
+    private func configureSearchController() {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.obscuresBackgroundDuringPresentation = false
         
-        controller.searchBar.placeholder = "Search Exercise"
+        controller.searchBar.placeholder = "Search"
         controller.searchBar.autocapitalizationType = .none
         controller.searchBar.returnKeyType = .done
         
@@ -62,25 +68,30 @@ class AddEntryViewController: UIViewController {
 
 extension AddEntryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exercises.count
+        return datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addExerciseTableCell")!
-        let exercise = exercises[indexPath.row]
+        let exercise = datasource[indexPath.row]
         cell.textLabel?.text = exercise.name
         cell.detailTextLabel?.text = exercise.muscleGroup.rawValue.capitalized
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedExercise = exercises[indexPath.row]
+        selectedExercise = datasource[indexPath.row]
     }
 }
 
 extension AddEntryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        // FIXME:
-        return
+        let searchText = searchController.searchBar.text!
+        if searchText.isEmpty {
+            datasource = exercises
+        } else {
+            datasource = exercises.filter { $0.muscleGroupString.lowercased().contains(searchText) || $0.name.lowercased().contains(searchText) }
+        }
+        tableView.reloadData()
     }
 }
