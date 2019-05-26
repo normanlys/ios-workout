@@ -29,7 +29,6 @@ class WorkoutViewController: UIViewController {
                 workout.toDate = Date()
             }
         }
-        DatabaseManager.add(object: workout)
         if workout.entries.count > 0 {
             DatabaseManager.add(object: workout)            
         }
