@@ -30,6 +30,9 @@ class WorkoutViewController: UIViewController {
             }
         }
         DatabaseManager.add(object: workout)
+        if workout.entries.count > 0 {
+            DatabaseManager.add(object: workout)            
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
