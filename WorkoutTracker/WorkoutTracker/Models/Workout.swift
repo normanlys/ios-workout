@@ -8,8 +8,21 @@
 
 import Foundation
 import RealmSwift
+import os
 
 class Workout: Object {
+    
+    struct Entry: Codable {
+        let exercise: Exercise
+        let sets: [Set]
+        
+        struct Set: Codable {
+            var rep: Int
+            /// In kg
+            var weight: Double
+        }
+    }
+    
     @objc dynamic var fromDate = Date()
     @objc dynamic var toDate = Date()
     @objc dynamic var entriesJSONString = ""
@@ -25,7 +38,7 @@ class Workout: Object {
                 let data = Data(entriesJSONString.utf8)
                 return try decoder.decode([Entry].self, from: data)
             } catch {
-                print("decode entries error")
+                os_log("Failed to decode entry from Workout", log: .default, type: .error)
                 return []
             }
         }
@@ -35,7 +48,7 @@ class Workout: Object {
                 let data = try encoder.encode(newValue)
                 entriesJSONString = String(data: data, encoding: .utf8)!
             } catch {
-                
+                os_log("Failed to encode entryString from entry", log: .default, type: .error)
             }
         }
     }
@@ -47,10 +60,5 @@ class Workout: Object {
     
     override static func primaryKey() -> String? {
         return "id"
-    }
-    
-    struct Entry: Codable {
-        let exercise: Exercise
-        let sets: [Int]
     }
 }
