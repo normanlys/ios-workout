@@ -15,11 +15,11 @@ protocol AddEntryDelegate {
 
 class AddEntryViewController: UIViewController {
     
-    let exercises: [Exercise] = {
+    var exercises: [Exercise] {
         //        let realm = try! Realm()
         //        return realm.objects(Exercise.self).sorted { $0.name < $1.name}
         return [Exercise(name: "Test", muscleGroup: .abdominal)]
-    }()
+    }
     
     var delegate: AddEntryDelegate?
     var selectedExercise: Exercise?
