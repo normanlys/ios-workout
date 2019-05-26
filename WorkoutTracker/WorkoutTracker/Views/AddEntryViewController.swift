@@ -26,10 +26,13 @@ class AddEntryViewController: UIViewController {
     var datasource: [Exercise] = []
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearchController()
+        configureTableView()
+        addButton.layer.cornerRadius = addButton.frame.height/2
     }
     
     private func configureTableView() {
@@ -81,6 +84,13 @@ extension AddEntryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedExercise = datasource[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        (0..<tableView.numberOfSections).forEach { section in
+            (0..<tableView.numberOfRows(inSection: section)).forEach { row in
+                tableView.cellForRow(at: IndexPath(row: row, section: section))?.accessoryType = .none
+            }
+        }
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
 }
 

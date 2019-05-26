@@ -153,7 +153,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z6S-XA-YwP">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addExerciseTableCell" textLabel="Vsx-Te-FCU" detailTextLabel="gb9-Mq-cCB" style="IBUITableViewCellStyleValue1" id="Ees-QB-hig">
@@ -187,7 +187,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sou-ac-JuN">
-                                <rect key="frame" x="20" y="814" width="374" height="40"/>
+                                <rect key="frame" x="20" y="765" width="374" height="40"/>
                                 <color key="backgroundColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ZXP-fB-GeV"/>
@@ -195,11 +195,6 @@
                                 <state key="normal" title="Add">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="addPressed:" destination="clU-Up-nVq" eventType="touchUpInside" id="pdc-cB-Ihn"/>
                                 </connections>
@@ -217,6 +212,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cAh-1V-LJA"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="asdf" width="42" style="done" id="e9y-aF-D23"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Choose Exercise" id="4Ga-Vv-gCv">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="V4p-oY-0VL">
                             <connections>
@@ -224,13 +222,15 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addButton" destination="sou-ac-JuN" id="Kf1-rb-niu"/>
                         <outlet property="tableView" destination="z6S-XA-YwP" id="NXg-at-Mvg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pir-eY-a5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4210.144927536232" y="-699.10714285714278"/>
+            <point key="canvasLocation" x="4162" y="-699"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="wg7-f3-ORb">
