@@ -61,6 +61,6 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension WorkoutViewController: AddEntryDelegate {
     func didSelectExercise(_ exercise: Exercise) {
-        // FIXME: edit entry
+        // FIXME: add entry
     }
 }
