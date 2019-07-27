@@ -10,6 +10,8 @@ import UIKit
 
 class WorkoutViewController: UIViewController {
     
+    let cellReuseIdentifier = "EntryTableCell"
+    
     var workout = Workout(entries: [])
     var isReadOnly = false
     
@@ -53,16 +55,18 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "entryTableCell")!
         let entry = datasource[indexPath.row]
-        cell.textLabel?.text = entry.exercise.muscleGroup.rawValue.capitalized
-        cell.detailTextLabel?.text = "\(entry.sets.count) sets"
-        return cell
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)
+        if cell == nil { cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier) }
+        cell!.textLabel?.text = entry.exercise.muscleGroup.rawValue.capitalized
+        cell!.detailTextLabel?.text = "\(entry.sets.count) sets"
+        return cell!
     }
 }
 
 extension WorkoutViewController: AddEntryDelegate {
     func didSelectExercises(_ exercises: [Exercise]) {
+        guard exercises.count > 0 else { return }
         let newEntries = exercises.map { Workout.Entry(exercise: $0, sets: []) }
         workout.add(entries: newEntries)
         tableView.reloadData()
