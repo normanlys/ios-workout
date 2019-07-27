@@ -22,7 +22,6 @@ class AddEntryViewController: UIViewController {
     }
     
     var delegate: AddEntryDelegate?
-    var selectedExercises: [Exercise] = []
     var datasource: [Exercise] = []
     
     @IBOutlet weak var tableView: UITableView!
@@ -60,7 +59,14 @@ class AddEntryViewController: UIViewController {
     }
     
     @IBAction func addPressed(_ sender: Any) {
-        delegate?.didSelectExercises(exercises)
+        var selectedExercises: [Exercise] = []
+        (0..<datasource.count).forEach { i in
+            let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0))!
+            if cell.accessoryType == .checkmark {
+                selectedExercises.append(exercises[i])
+            }
+        }
+        delegate?.didSelectExercises(selectedExercises)
         dismiss(animated: true, completion: nil)
     }
 }
@@ -80,8 +86,8 @@ extension AddEntryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let cellAccessoryType = tableView.cellForRow(at: indexPath)?.accessoryType ?? .none
-        tableView.cellForRow(at: indexPath)?.accessoryType = cellAccessoryType == .none ? .checkmark : .none
+        let cell = tableView.cellForRow(at: indexPath)!
+        cell.accessoryType = cell.accessoryType == .none ? .checkmark : .none
     }
 }
 
