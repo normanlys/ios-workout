@@ -16,7 +16,9 @@ class WorkoutViewController: UIViewController {
     var datasource: [Workout.Entry] {
         return workout.entries
     }
-
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = DateFormatter.standard.string(from: workout.fromDate)
@@ -60,7 +62,9 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension WorkoutViewController: AddEntryDelegate {
-    func didSelectExercise(_ exercise: Exercise) {
-        // FIXME: add entry
+    func didSelectExercises(_ exercises: [Exercise]) {
+        let newEntries = exercises.map { Workout.Entry(exercise: $0, sets: []) }
+        workout.add(entries: newEntries)
+        tableView.reloadData()
     }
 }

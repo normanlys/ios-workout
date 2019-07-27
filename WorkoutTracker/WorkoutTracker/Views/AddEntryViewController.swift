@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 protocol AddEntryDelegate {
-    func didSelectExercise(_ exercise: Exercise)
+    func didSelectExercises(_ exercises: [Exercise])
 }
 
 class AddEntryViewController: UIViewController {
@@ -22,7 +22,7 @@ class AddEntryViewController: UIViewController {
     }
     
     var delegate: AddEntryDelegate?
-    var selectedExercise: Exercise?
+    var selectedExercises: [Exercise] = []
     var datasource: [Exercise] = []
     
     @IBOutlet weak var tableView: UITableView!
@@ -60,11 +60,7 @@ class AddEntryViewController: UIViewController {
     }
     
     @IBAction func addPressed(_ sender: Any) {
-        guard let exercise = selectedExercise else {
-            presentSimpleAlert(title: "Choose an Exercise")
-            return
-        }
-        delegate?.didSelectExercise(exercise)
+        delegate?.didSelectExercises(exercises)
         dismiss(animated: true, completion: nil)
     }
 }
@@ -83,14 +79,9 @@ extension AddEntryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedExercise = datasource[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        (0..<tableView.numberOfSections).forEach { section in
-            (0..<tableView.numberOfRows(inSection: section)).forEach { row in
-                tableView.cellForRow(at: IndexPath(row: row, section: section))?.accessoryType = .none
-            }
-        }
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        let cellAccessoryType = tableView.cellForRow(at: indexPath)?.accessoryType ?? .none
+        tableView.cellForRow(at: indexPath)?.accessoryType = cellAccessoryType == .none ? .checkmark : .none
     }
 }
 

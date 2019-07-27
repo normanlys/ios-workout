@@ -19,7 +19,7 @@ class Workout: Object {
         struct Set: Codable {
             var rep: Int
             /// In kg
-            var weight: Double
+            var weight: Decimal
         }
     }
     
@@ -31,6 +31,7 @@ class Workout: Object {
     var duration: TimeInterval {
         return toDate.timeIntervalSince(fromDate)
     }
+    /// Stored as JSON strings in DB
     var entries: [Entry] {
         get {
             let decoder = JSONDecoder()
@@ -60,5 +61,17 @@ class Workout: Object {
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    func add(entry: Workout.Entry) {
+        DatabaseManager.write { (_) in
+            entries = entries + [entry]
+        }
+    }
+    
+    func add(entries: [Workout.Entry]) {
+        DatabaseManager.write { (_) in
+            self.entries = self.entries + entries
+        }
     }
 }
