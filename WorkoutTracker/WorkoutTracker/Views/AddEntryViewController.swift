@@ -15,6 +15,8 @@ protocol AddEntryDelegate {
 
 class AddEntryViewController: UIViewController {
     
+    let cellReuseIdentifier = "addExerciseTableCell"
+    
     var exercises: [Exercise] {
         //        let realm = try! Realm()
         //        return realm.objects(Exercise.self).sorted { $0.name < $1.name}
@@ -77,7 +79,7 @@ extension AddEntryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "addExerciseTableCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)!
         let exercise = datasource[indexPath.row]
         cell.textLabel?.text = exercise.name
         cell.detailTextLabel?.text = exercise.muscleGroup.rawValue.capitalized
