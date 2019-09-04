@@ -1,7 +1,8 @@
 # ios-workout
 
+## Overview
 iOS app for tracking workouts
 
-Development:
+## Development:
 - Mostly programmatic approach
 - Attempt to apply MVVM pattern
