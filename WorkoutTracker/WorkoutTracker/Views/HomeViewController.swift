@@ -11,9 +11,10 @@ import RealmSwift
 
 class HomeViewController: UIViewController {
     
+    let cellReuseIdentifier = "Cell"
+    
     /// Referencing database object
     var selectedWorkout: Workout?
-    
     var workouts: Results<Workout> {
         let realm = try! Realm()
         return realm.objects(Workout.self)
@@ -28,24 +29,45 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var tableView: UITableView!
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        setupNavigationBar()
+        setupTableView()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "addWorkoutSegue":
-            break
-        case "viewWorkoutSegue":
-            let vc = segue.destination as! WorkoutViewController
-            vc.workout = selectedWorkout!
-            vc.isReadOnly = true
-        default:
-            break
-        }
+    private func setupTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            ])
+    }
+    
+    fileprivate func setupNavigationBar() {
+        navigationItem.title = "History"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed(_:)))
+    }
+    
+    // MARK: Actions
+    
+    @objc private func addPressed(_ sender: UITabBarItem) {
+        navigationController?.pushViewController(WorkoutViewController(), animated: true)
     }
 }
 
@@ -55,7 +77,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
         let item = datasource[indexPath.row]
         
         cell.textLabel?.text = item.muscleGroups.map { $0.rawValue.capitalized }.joined(separator: ", ")
@@ -67,11 +89,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        selectedWorkout = workouts[indexPath.row]
-        return indexPath
+        let vc = WorkoutViewController()
+        vc.workout = workouts[indexPath.row]
+        vc.isReadOnly = true
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

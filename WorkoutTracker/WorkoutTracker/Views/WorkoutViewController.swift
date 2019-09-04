@@ -19,11 +19,25 @@ class WorkoutViewController: UIViewController {
         return workout.entries
     }
     
-    @IBOutlet weak var tableView: UITableView!
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
+    
+    fileprivate func setupNavigationBar() {
+        title = DateFormatter.standard.string(from: workout.fromDate)
+        if !isReadOnly {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed(_:)))
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = DateFormatter.standard.string(from: workout.fromDate)
+        view.backgroundColor = .white
+        setupNavigationBar()
+        setupTableView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,6 +60,24 @@ class WorkoutViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    private func setupTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            ])
+    }
+    
+    // MARK: Actions
+    @objc private func addPressed(_ sender: UIBarButtonItem) {
+        let vc = AddEntryViewController()
+        vc.delegate = self
+        present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 }
 

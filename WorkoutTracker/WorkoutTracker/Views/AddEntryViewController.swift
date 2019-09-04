@@ -26,23 +26,40 @@ class AddEntryViewController: UIViewController {
     var delegate: AddEntryDelegate?
     var datasource: [Exercise] = []
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addButton: UIButton!
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
+    
+    lazy var addButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureSearchController()
-        configureTableView()
-        addButton.layer.cornerRadius = addButton.frame.height/2
+        view.backgroundColor = .white
+        setupSearchController()
+        setupTableView()
+        setupAddButton()
+        setupNavigationBar()
     }
     
-    private func configureTableView() {
+    private func setupTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            ])
+        
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
         datasource = exercises
         tableView.reloadData()
     }
     
-    private func configureSearchController() {
+    private func setupSearchController() {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.obscuresBackgroundDuringPresentation = false
@@ -55,12 +72,35 @@ class AddEntryViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
     }
+    
+    fileprivate func setupAddButton() {
+        addButton.setTitle("Add", for: .normal)
+        addButton.backgroundColor = .blue
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.addTarget(self, action: #selector(addPressed(_:)), for: .touchUpInside)
+        view.addSubview(addButton)
+        let margin = CGFloat(8)
+        NSLayoutConstraint.activate([
+            addButton.heightAnchor.constraint(equalToConstant: 40),
+            addButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: margin),
+            addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -margin),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -margin)
+            ])
+        addButton.layer.cornerRadius = addButton.frame.height/2
+    }
+    
+    fileprivate func setupNavigationBar() {
+        title = "Choose Exercise"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closePressed(_:)))
+    }
+    
+    // MARK: Actions
 
-    @IBAction func closePressed(_ sender: Any) {
+    @objc private func closePressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func addPressed(_ sender: Any) {
+    @objc private func addPressed(_ sender: Any) {
         var selectedExercises: [Exercise] = []
         (0..<datasource.count).forEach { i in
             let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0))!
@@ -79,7 +119,7 @@ extension AddEntryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style: .value1, reuseIdentifier: cellReuseIdentifier)
         let exercise = datasource[indexPath.row]
         cell.textLabel?.text = exercise.name
         cell.detailTextLabel?.text = exercise.muscleGroup.rawValue.capitalized
