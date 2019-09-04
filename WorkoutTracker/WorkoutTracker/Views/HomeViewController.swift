@@ -13,8 +13,6 @@ class HomeViewController: UIViewController {
     
     let cellReuseIdentifier = "Cell"
     
-    /// Referencing database object
-    var selectedWorkout: Workout?
     var workouts: Results<Workout> {
         let realm = try! Realm()
         return realm.objects(Workout.self)
