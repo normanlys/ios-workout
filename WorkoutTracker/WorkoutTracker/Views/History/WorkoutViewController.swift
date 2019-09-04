@@ -26,13 +26,6 @@ class WorkoutViewController: UIViewController {
         return tableView
     }()
     
-    fileprivate func setupNavigationBar() {
-        title = DateFormatter.standard.string(from: workout.fromDate)
-        if !isReadOnly {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed(_:)))
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -71,6 +64,13 @@ class WorkoutViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             ])
+    }
+    
+    fileprivate func setupNavigationBar() {
+        title = DateFormatter.standard.string(from: workout.fromDate)
+        if !isReadOnly {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed(_:)))
+        }
     }
     
     // MARK: Actions
