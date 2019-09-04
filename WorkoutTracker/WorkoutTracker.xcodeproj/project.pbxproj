@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B2C7417941F66F3B0FC0297 /* Pods_WorkoutTrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6B2721E95099DF304C1B31 /* Pods_WorkoutTrackerUITests.framework */; };
 		1A764D03231FF6BA00E0E3C8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A764D02231FF6BA00E0E3C8 /* TabBarController.swift */; };
+		1A764D08232004B500E0E3C8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A764D07232004B500E0E3C8 /* TableViewController.swift */; };
 		1A9F4AF4227DE64E0029AC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF3227DE64E0029AC3A /* AppDelegate.swift */; };
 		1A9F4AF6227DE64E0029AC3A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */; };
 		1A9F4AF8227DE64E0029AC3A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF7227DE64E0029AC3A /* SettingsViewController.swift */; };
@@ -49,6 +50,7 @@
 		006DCEA7869AFF8E21AFBF4D /* Pods-WorkoutTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutTracker.release.xcconfig"; path = "Target Support Files/Pods-WorkoutTracker/Pods-WorkoutTracker.release.xcconfig"; sourceTree = "<group>"; };
 		1A6B2721E95099DF304C1B31 /* Pods_WorkoutTrackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutTrackerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A764D02231FF6BA00E0E3C8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		1A764D07232004B500E0E3C8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		1A9F4AF0227DE64E0029AC3A /* WorkoutTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9F4AF3227DE64E0029AC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A764D042320048100E0E3C8 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */,
+				1A9F4B36228730670029AC3A /* AddEntryViewController.swift */,
+				1A9F4B282282F7140029AC3A /* WorkoutViewController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		1A764D052320048C00E0E3C8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1A9F4AF7227DE64E0029AC3A /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		1A764D062320049900E0E3C8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1A764D02231FF6BA00E0E3C8 /* TabBarController.swift */,
+				1A764D07232004B500E0E3C8 /* TableViewController.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		1A9F4AE7227DE64E0029AC3A = {
 			isa = PBXGroup;
 			children = (
@@ -163,11 +192,9 @@
 		1A9F4B23227DE6680029AC3A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */,
-				1A9F4AF7227DE64E0029AC3A /* SettingsViewController.swift */,
-				1A9F4B36228730670029AC3A /* AddEntryViewController.swift */,
-				1A9F4B282282F7140029AC3A /* WorkoutViewController.swift */,
-				1A764D02231FF6BA00E0E3C8 /* TabBarController.swift */,
+				1A764D062320049900E0E3C8 /* Shared */,
+				1A764D052320048C00E0E3C8 /* Settings */,
+				1A764D042320048100E0E3C8 /* History */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -454,6 +481,7 @@
 			files = (
 				1A9F4B32228311140029AC3A /* DatabaseManager.swift in Sources */,
 				1A9F4B37228730670029AC3A /* AddEntryViewController.swift in Sources */,
+				1A764D08232004B500E0E3C8 /* TableViewController.swift in Sources */,
 				1A9F4AF8227DE64E0029AC3A /* SettingsViewController.swift in Sources */,
 				1A9F4B3522831F280029AC3A /* DateExtension.swift in Sources */,
 				1A9F4AF4227DE64E0029AC3A /* AppDelegate.swift in Sources */,
