@@ -10,6 +10,7 @@
 		0B2C7417941F66F3B0FC0297 /* Pods_WorkoutTrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6B2721E95099DF304C1B31 /* Pods_WorkoutTrackerUITests.framework */; };
 		1A764D03231FF6BA00E0E3C8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A764D02231FF6BA00E0E3C8 /* TabBarController.swift */; };
 		1A764D08232004B500E0E3C8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A764D07232004B500E0E3C8 /* TableViewController.swift */; };
+		1A764D0A2320084900E0E3C8 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A764D092320084900E0E3C8 /* ColorExtensions.swift */; };
 		1A9F4AF4227DE64E0029AC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF3227DE64E0029AC3A /* AppDelegate.swift */; };
 		1A9F4AF6227DE64E0029AC3A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */; };
 		1A9F4AF8227DE64E0029AC3A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF7227DE64E0029AC3A /* SettingsViewController.swift */; };
@@ -51,6 +52,7 @@
 		1A6B2721E95099DF304C1B31 /* Pods_WorkoutTrackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutTrackerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A764D02231FF6BA00E0E3C8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1A764D07232004B500E0E3C8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		1A764D092320084900E0E3C8 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		1A9F4AF0227DE64E0029AC3A /* WorkoutTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9F4AF3227DE64E0029AC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			children = (
 				1A9F4B3422831F280029AC3A /* DateExtension.swift */,
 				1A9F4B38228748F90029AC3A /* ViewControllerExtension.swift */,
+				1A764D092320084900E0E3C8 /* ColorExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				1A764D03231FF6BA00E0E3C8 /* TabBarController.swift in Sources */,
 				1A9F4B2F2282F91F0029AC3A /* Exercise.swift in Sources */,
 				1A9F4B2D2282F8910029AC3A /* Workout.swift in Sources */,
+				1A764D0A2320084900E0E3C8 /* ColorExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
