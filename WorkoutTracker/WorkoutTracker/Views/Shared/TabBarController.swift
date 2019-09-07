@@ -13,7 +13,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let home = HomeViewController()
+        let home = HistoryViewController()
         home.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
         let settings = SettingsViewController()
         settings.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)

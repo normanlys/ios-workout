@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class HomeViewController: UIViewController {
+class HistoryViewController: UIViewController {
     
     let cellReuseIdentifier = "Cell"
     
@@ -17,14 +17,10 @@ class HomeViewController: UIViewController {
         let realm = try! Realm()
         return realm.objects(Workout.self)
     }
-    var datasource: [TableItem] {
+    var datasource: [WorkoutViewModel] {
         return workouts
-            .sorted { $1.fromDate < $0.fromDate}
-            .map { workout in
-            return TableItem(muscleGroups: workout.entries.map { $0.exercise.muscleGroup },
-                             date: workout.fromDate,
-                             duration: workout.duration)
-        }
+            .map { WorkoutViewModel(workout: $0) }
+            .sorted()
     }
     
     lazy var tableView: UITableView = {
@@ -69,19 +65,14 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
-        let item = datasource[indexPath.row]
-        
-        cell.textLabel?.text = item.muscleGroups.map { $0.rawValue.capitalized }.joined(separator: ", ")
-        cell.detailTextLabel?.text = [DateFormatter.standard.string(from: item.date),
-                                      DateComponentsFormatter.standard.string(from: item.duration)!].joined(separator: ", ")
-        
+        datasource[indexPath.row].configure(cell: cell)
         return cell
     }
     
@@ -94,10 +85,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension HomeViewController {
-    struct TableItem {
+extension HistoryViewController {
+    struct WorkoutViewModel: Comparable {
+        static func < (lhs: HistoryViewController.WorkoutViewModel, rhs: HistoryViewController.WorkoutViewModel) -> Bool {
+            return lhs.date > rhs.date
+        }
+        
+        var workout: Workout
+        
         var muscleGroups: [MuscleGroup] = []
         var date: Date
         var duration: TimeInterval
+        
+        init(workout: Workout) {
+            self.workout = workout
+            muscleGroups = workout.entries.map { $0.exercise.muscleGroup }
+            date = workout.fromDate
+            duration = workout.duration
+        }
+        
+        func configure(cell: UITableViewCell) {
+            cell.textLabel?.text = muscleGroups.map { $0.rawValue.capitalized }.joined(separator: ", ")
+            cell.detailTextLabel?.text = [DateFormatter.standard.string(from: date),
+                                          DateComponentsFormatter.standard.string(from: duration)!].joined(separator: ", ")
+        }
+        
+        
     }
 }
