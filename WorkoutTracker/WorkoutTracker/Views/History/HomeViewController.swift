@@ -17,7 +17,7 @@ class HistoryViewController: UIViewController {
         let realm = try! Realm()
         return realm.objects(Workout.self)
     }
-    var datasource: [WorkoutViewModel] {
+    var workoutViewModels: [WorkoutViewModel] {
         return workouts
             .map { WorkoutViewModel(workout: $0) }
             .sorted()
@@ -67,12 +67,12 @@ class HistoryViewController: UIViewController {
 
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource.count
+        return workoutViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
-        datasource[indexPath.row].configure(cell: cell)
+        workoutViewModels[indexPath.row].configure(cell: cell)
         return cell
     }
     
