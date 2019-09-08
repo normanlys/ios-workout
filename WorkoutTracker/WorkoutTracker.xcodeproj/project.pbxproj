@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		0B2C7417941F66F3B0FC0297 /* Pods_WorkoutTrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6B2721E95099DF304C1B31 /* Pods_WorkoutTrackerUITests.framework */; };
 		1A764D03231FF6BA00E0E3C8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A764D02231FF6BA00E0E3C8 /* TabBarController.swift */; };
-		1A764D0A2320084900E0E3C8 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A764D092320084900E0E3C8 /* ColorExtensions.swift */; };
+		1A764D0A2320084900E0E3C8 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A764D092320084900E0E3C8 /* ColorExtension.swift */; };
+		1A764D11232516A100E0E3C8 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A764D10232516A100E0E3C8 /* UITableViewCellExtension.swift */; };
+		1A764D142325190200E0E3C8 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A764D122325190200E0E3C8 /* EntryTableViewCell.swift */; };
+		1A764D152325190200E0E3C8 /* EntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A764D132325190200E0E3C8 /* EntryTableViewCell.xib */; };
 		1A9F4AF4227DE64E0029AC3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF3227DE64E0029AC3A /* AppDelegate.swift */; };
 		1A9F4AF6227DE64E0029AC3A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */; };
 		1A9F4AF8227DE64E0029AC3A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F4AF7227DE64E0029AC3A /* SettingsViewController.swift */; };
@@ -50,7 +53,10 @@
 		006DCEA7869AFF8E21AFBF4D /* Pods-WorkoutTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutTracker.release.xcconfig"; path = "Target Support Files/Pods-WorkoutTracker/Pods-WorkoutTracker.release.xcconfig"; sourceTree = "<group>"; };
 		1A6B2721E95099DF304C1B31 /* Pods_WorkoutTrackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutTrackerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A764D02231FF6BA00E0E3C8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		1A764D092320084900E0E3C8 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		1A764D092320084900E0E3C8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		1A764D10232516A100E0E3C8 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
+		1A764D122325190200E0E3C8 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
+		1A764D132325190200E0E3C8 /* EntryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryTableViewCell.xib; sourceTree = "<group>"; };
 		1A9F4AF0227DE64E0029AC3A /* WorkoutTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9F4AF3227DE64E0029AC3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 		1A764D042320048100E0E3C8 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				1A764D0B2325160600E0E3C8 /* Cells */,
 				1A9F4AF5227DE64E0029AC3A /* HomeViewController.swift */,
 				1A9F4B36228730670029AC3A /* AddEntryViewController.swift */,
 				1A9F4B282282F7140029AC3A /* WorkoutViewController.swift */,
@@ -133,6 +140,15 @@
 				1A764D02231FF6BA00E0E3C8 /* TabBarController.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		1A764D0B2325160600E0E3C8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1A764D122325190200E0E3C8 /* EntryTableViewCell.swift */,
+				1A764D132325190200E0E3C8 /* EntryTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		1A9F4AE7227DE64E0029AC3A = {
@@ -231,7 +247,8 @@
 			children = (
 				1A9F4B3422831F280029AC3A /* DateExtension.swift */,
 				1A9F4B38228748F90029AC3A /* ViewControllerExtension.swift */,
-				1A764D092320084900E0E3C8 /* ColorExtensions.swift */,
+				1A764D092320084900E0E3C8 /* ColorExtension.swift */,
+				1A764D10232516A100E0E3C8 /* UITableViewCellExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -369,6 +386,7 @@
 			files = (
 				1A9F4B00227DE6500029AC3A /* LaunchScreen.storyboard in Resources */,
 				1A9F4AFD227DE6500029AC3A /* Assets.xcassets in Resources */,
+				1A764D152325190200E0E3C8 /* EntryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,13 +503,15 @@
 				1A9F4B3522831F280029AC3A /* DateExtension.swift in Sources */,
 				1A9F4AF4227DE64E0029AC3A /* AppDelegate.swift in Sources */,
 				1A9F4B27227F01800029AC3A /* MuscleGroup.swift in Sources */,
+				1A764D142325190200E0E3C8 /* EntryTableViewCell.swift in Sources */,
 				1A9F4AF6227DE64E0029AC3A /* HomeViewController.swift in Sources */,
 				1A9F4B39228748F90029AC3A /* ViewControllerExtension.swift in Sources */,
 				1A9F4B292282F7150029AC3A /* WorkoutViewController.swift in Sources */,
 				1A764D03231FF6BA00E0E3C8 /* TabBarController.swift in Sources */,
 				1A9F4B2F2282F91F0029AC3A /* Exercise.swift in Sources */,
+				1A764D11232516A100E0E3C8 /* UITableViewCellExtension.swift in Sources */,
 				1A9F4B2D2282F8910029AC3A /* Workout.swift in Sources */,
-				1A764D0A2320084900E0E3C8 /* ColorExtensions.swift in Sources */,
+				1A764D0A2320084900E0E3C8 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

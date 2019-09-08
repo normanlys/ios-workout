@@ -109,7 +109,5 @@ extension HistoryViewController {
             cell.detailTextLabel?.text = [DateFormatter.standard.string(from: date),
                                           DateComponentsFormatter.standard.string(from: duration)!].joined(separator: ", ")
         }
-        
-        
     }
 }

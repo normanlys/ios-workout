@@ -46,6 +46,7 @@ class WorkoutViewController: UIViewController {
     }
     
     private func setupTableView() {
+        tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -54,6 +55,7 @@ class WorkoutViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             ])
+        tableView.register(EntryTableViewCell.nib, forCellReuseIdentifier: cellReuseIdentifier)
     }
     
     fileprivate func setupNavigationBar() {
@@ -77,7 +79,7 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! EntryTableViewCell
         entryViewModels[indexPath.row].configure(cell: cell)
         return cell
     }
@@ -97,8 +99,17 @@ extension WorkoutViewController {
         var entry: Workout.Entry
         
         func configure(cell: UITableViewCell) {
-            cell.textLabel?.text = entry.exercise.muscleGroup.rawValue.capitalized
+            cell.textLabel?.text = entry.exercise.name
             cell.detailTextLabel?.text = "\(entry.sets.count) sets"
+            cell.accessoryType = .disclosureIndicator
+            
+            cell.layer.cornerRadius = 5
+            cell.layer.shadowOffset = CGSize(width: 5, height: 5)
+        }
+        
+        func configure(cell: EntryTableViewCell) {
+            cell.nameLabel.text = entry.exercise.name
+            cell.numberOfSetsLabel.text = "\(entry.sets.count) sets"
         }
     }
 }
