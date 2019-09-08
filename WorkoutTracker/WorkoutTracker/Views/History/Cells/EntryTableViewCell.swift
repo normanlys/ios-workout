@@ -10,7 +10,7 @@ import UIKit
 
 class EntryTableViewCell: UITableViewCell {
     
-    static let cornerRadius: CGFloat = 5
+    static let cornerRadius: CGFloat = 10
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -27,6 +27,6 @@ class EntryTableViewCell: UITableViewCell {
         containerView.layer.shadowOffset = CGSize(width: 1, height: 1)
         containerView.layer.shadowColor = UIColor.gray.cgColor
         containerView.layer.shadowOpacity = 0.5
-        containerView.layer.shadowRadius = EntryTableViewCell.cornerRadius
+        containerView.layer.shadowRadius = EntryTableViewCell.cornerRadius/2
     }
 }
