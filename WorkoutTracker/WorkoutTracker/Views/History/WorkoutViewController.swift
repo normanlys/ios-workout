@@ -15,8 +15,8 @@ class WorkoutViewController: UIViewController {
     var workout = Workout(entries: [])
     var isReadOnly = false
     
-    var datasource: [Workout.Entry] {
-        return workout.entries
+    var entryViewModels: [EntryViewModel] {
+        return workout.entries.map { EntryViewModel(entry: $0) }
     }
     
     lazy var tableView: UITableView = {
@@ -42,16 +42,6 @@ class WorkoutViewController: UIViewController {
         }
         if workout.entries.count > 0 {
             DatabaseManager.add(object: workout)            
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "addEntrySegue":
-            let vc = (segue.destination as! UINavigationController).topViewController as! AddEntryViewController
-            vc.delegate = self
-        default:
-            break
         }
     }
     
@@ -83,16 +73,13 @@ class WorkoutViewController: UIViewController {
 
 extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource.count
+        return entryViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let entry = datasource[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)
-        if cell == nil { cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier) }
-        cell!.textLabel?.text = entry.exercise.muscleGroup.rawValue.capitalized
-        cell!.detailTextLabel?.text = "\(entry.sets.count) sets"
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
+        entryViewModels[indexPath.row].configure(cell: cell)
+        return cell
     }
 }
 
@@ -102,5 +89,16 @@ extension WorkoutViewController: AddEntryDelegate {
         let newEntries = exercises.map { Workout.Entry(exercise: $0, sets: []) }
         workout.add(entries: newEntries)
         tableView.reloadData()
+    }
+}
+
+extension WorkoutViewController {
+    struct EntryViewModel {
+        var entry: Workout.Entry
+        
+        func configure(cell: UITableViewCell) {
+            cell.textLabel?.text = entry.exercise.muscleGroup.rawValue.capitalized
+            cell.detailTextLabel?.text = "\(entry.sets.count) sets"
+        }
     }
 }
